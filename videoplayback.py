@@ -12,11 +12,11 @@ def convert(video=None,speed=None):
     '''
 
     if video==None and speed==None:
-        print(r"You can simply change playback speed of a video with python videoplayback.py change_playback_speed --video {video_filename} --speed {speed}")
-        print(r'E.g python videoplayback.py change_playback_speed --video path\\to\\video.mp4 --speed 2')
-        video = input('$$ Video filename (ensure it is a relative path) >> ')
+        print("You can simply change playback speed of a video with python videoplayback.py change_playback_speed --video {video_filename} --speed {speed}")
+        print("E.g python videoplayback.py change_playback_speed --video path\\to\\video.mp4 --speed 2")
+        video = input('$ Video filename (ensure it is a relative path): ')
         
-        speed = input('$$ Type speed here >> ')
+        speed = input('$ Type speed here: ')
         
     try:  
         video_name = os.path.basename(video)
@@ -25,14 +25,15 @@ def convert(video=None,speed=None):
 
     
     try:
-        print(f'PyNerd - {video_name} playback speed will be increased by {speed}')
+        print(f'{video_name} playback speed will be increased by {speed}')
         clip = VideoFileClip(video)
-        print('PyNerd - Play back speed will be changed in a moment....')
+        print('Play back speed will be changed in a moment....')
         final = clip.fx(vfx.speedx, speed)
-        final.write_videofile('(PyNerd)-'+ video_name)
-        print('PyNerd - Video saved as '+'(PyNerd)-'+ video_name)
+        new_filename = f"new_{video_name}"
+        final.write_videofile(new_filename)
+        print(f'Video saved as {new_filename}')
     except:
-        print('PyNerd - Oops, an error occured. Try again!')
+        print('Oops, an error occured. Try again!')
     
 
 
